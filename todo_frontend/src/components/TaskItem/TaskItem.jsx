@@ -51,7 +51,11 @@ export default function TaskItem({ task, onToggle, onDelete, onUpdateText }) {
   }
 
   return (
-    <div className={`${styles.row} ${task.completed ? styles.completed : ''}`} role="listitem">
+    <div
+      className={`${styles.row} ${task.completed ? styles.completed : ''}`}
+      role="listitem"
+      data-tour-id="task-row"
+    >
       <div className={styles.left}>
         <input
           id={checkboxId}
@@ -92,7 +96,7 @@ export default function TaskItem({ task, onToggle, onDelete, onUpdateText }) {
       </div>
 
       {!editing && (
-        <div className={styles.actions}>
+        <div className={styles.actions} data-tour-id="task-actions">
           <button type="button" className={styles.iconButton} onClick={startEdit} aria-label="Edit task">
             ✎
           </button>

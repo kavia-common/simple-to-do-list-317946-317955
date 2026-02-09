@@ -31,6 +31,36 @@
   font-size: 0.95rem;
 }
 
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.secondaryButton {
+  height: 42px;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--primary) 24%, var(--border));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 7%, white), white);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+  font-weight: 800;
+}
+
+.secondaryButton:hover {
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.secondaryButton:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-color: var(--primary);
+}
+
 .helpButton {
   height: 42px;
   display: inline-flex;

@@ -5,6 +5,8 @@ import FilterBar from './components/FilterBar/FilterBar.jsx';
 import TaskList from './components/TaskList/TaskList.jsx';
 import EmptyState from './components/EmptyState/EmptyState.jsx';
 import InstructionsPanel from './components/InstructionsPanel/InstructionsPanel.jsx';
+import Walkthrough from './components/Walkthrough/Walkthrough.jsx';
+import { getWalkthroughDismissed } from './components/Walkthrough/storage.js';
 import styles from './App.module.css';
 
 const STORAGE_KEY = 'todo_tasks';
@@ -41,6 +43,42 @@ export default function App() {
   const [filter, setFilter] = useState('all'); // all | active | completed
   const [helpOpen, setHelpOpen] = useState(false);
 
+  const [walkthroughOpen, setWalkthroughOpen] = useState(false);
+
+  const walkthroughSteps = useMemo(
+    () => [
+      {
+        id: 'help',
+        targetTourId: 'header-help',
+        side: 'bottom',
+        title: 'Help & walkthrough',
+        description: 'Use Help any time, or restart this walkthrough to learn the basics.'
+      },
+      {
+        id: 'add',
+        targetTourId: 'add-input',
+        side: 'bottom',
+        title: 'Add tasks fast',
+        description: 'Type a task and press Enter, or click Add. Empty tasks are blocked.'
+      },
+      {
+        id: 'actions',
+        targetTourId: 'task-row',
+        side: 'top',
+        title: 'Edit, complete, delete',
+        description: 'Use the checkbox to complete, the pencil to edit, and the trash to delete.'
+      },
+      {
+        id: 'filter',
+        targetTourId: 'filter-bar',
+        side: 'top',
+        title: 'Filter your list',
+        description: 'Switch between All / Active / Completed to focus on what matters.'
+      }
+    ],
+    []
+  );
+
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
   }, [tasks]);
@@ -57,6 +95,13 @@ export default function App() {
     if (filter === 'completed') return tasks.filter((t) => t.completed);
     return tasks;
   }, [tasks, filter]);
+
+  useEffect(() => {
+    // Auto-start only for first-time users with no stored tasks (and not previously dismissed).
+    if (tasks.length > 0) return;
+    if (getWalkthroughDismissed()) return;
+    setWalkthroughOpen(true);
+  }, []);
 
   function addTask(rawText) {
     const text = rawText.trim();
@@ -79,12 +124,21 @@ export default function App() {
     return true;
   }
 
+  function startWalkthrough() {
+    setHelpOpen(false);
+    setWalkthroughOpen(true);
+  }
+
   return (
     <div className={styles.page}>
-      <Header helpOpen={helpOpen} onToggleHelp={() => setHelpOpen((v) => !v)} />
+      <Header
+        helpOpen={helpOpen}
+        onToggleHelp={() => setHelpOpen((v) => !v)}
+        onStartWalkthrough={startWalkthrough}
+      />
 
       <main className={styles.main} aria-label="To-do application">
-        <InstructionsPanel open={helpOpen} onClose={() => setHelpOpen(false)} />
+        <InstructionsPanel open={helpOpen} onClose={() => setHelpOpen(false)} onStartWalkthrough={startWalkthrough} />
 
         <section className={styles.card} aria-label="Create a task">
           <TaskInput onAdd={addTask} />
@@ -104,6 +158,8 @@ export default function App() {
           )}
         </section>
       </main>
+
+      <Walkthrough open={walkthroughOpen} steps={walkthroughSteps} onClose={() => setWalkthroughOpen(false)} />
     </div>
   );
 }

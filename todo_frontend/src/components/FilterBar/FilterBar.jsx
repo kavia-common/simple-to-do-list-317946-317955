@@ -12,7 +12,7 @@ export default function FilterBar({ filter, onChange, counts }) {
   ];
 
   return (
-    <div className={styles.bar} role="tablist" aria-label="Task filters">
+    <div className={styles.bar} role="tablist" aria-label="Task filters" data-tour-id="filter-bar">
       {items.map((it) => {
         const active = it.key === filter;
         return (

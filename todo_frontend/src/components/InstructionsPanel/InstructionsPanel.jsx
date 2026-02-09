@@ -4,7 +4,7 @@ import styles from './InstructionsPanel.module.css';
 /**
  * Dismissible help/instructions panel. Shown/hidden via the header help button.
  */
-export default function InstructionsPanel({ open, onClose }) {
+export default function InstructionsPanel({ open, onClose, onStartWalkthrough }) {
   const closeButtonRef = useRef(null);
 
   useEffect(() => {
@@ -30,15 +30,26 @@ export default function InstructionsPanel({ open, onClose }) {
           <p className={styles.subtitle}>Keyboard-friendly, quick to use.</p>
         </div>
 
-        <button
-          ref={closeButtonRef}
-          type="button"
-          className={styles.close}
-          onClick={onClose}
-          aria-label="Close help panel"
-        >
-          ×
-        </button>
+        <div className={styles.headerActions}>
+          <button
+            type="button"
+            className={styles.walkthrough}
+            onClick={onStartWalkthrough}
+            aria-label="Start walkthrough"
+          >
+            Start walkthrough
+          </button>
+
+          <button
+            ref={closeButtonRef}
+            type="button"
+            className={styles.close}
+            onClick={onClose}
+            aria-label="Close help panel"
+          >
+            ×
+          </button>
+        </div>
       </div>
 
       <div className={styles.body}>

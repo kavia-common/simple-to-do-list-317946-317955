@@ -48,6 +48,7 @@ export default function TaskInput({ onAdd }) {
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={onKeyDown}
           autoComplete="off"
+          data-tour-id="add-input"
         />
 
         <button
@@ -56,6 +57,7 @@ export default function TaskInput({ onAdd }) {
           onClick={submit}
           disabled={!canAdd}
           aria-label="Add task"
+          data-tour-id="add-button"
         >
           Add
         </button>

@@ -5,7 +5,7 @@ import styles from './Header.module.css';
  * Header for the todo app.
  * Includes title and a help button that toggles the instructions panel.
  */
-export default function Header({ helpOpen, onToggleHelp }) {
+export default function Header({ helpOpen, onToggleHelp, onStartWalkthrough }) {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -14,18 +14,30 @@ export default function Header({ helpOpen, onToggleHelp }) {
           <p className={styles.subtitle}>Stay on track with quick add, edit, and filters.</p>
         </div>
 
-        <button
-          type="button"
-          className={styles.helpButton}
-          aria-label={helpOpen ? 'Close help' : 'Open help'}
-          aria-pressed={helpOpen}
-          onClick={onToggleHelp}
-        >
-          <span className={styles.helpIcon} aria-hidden="true">
-            ?
-          </span>
-          <span className={styles.helpText}>Help</span>
-        </button>
+        <div className={styles.actions}>
+          <button
+            type="button"
+            className={styles.secondaryButton}
+            onClick={onStartWalkthrough}
+            aria-label="Start walkthrough"
+            data-tour-id="header-help"
+          >
+            Start walkthrough
+          </button>
+
+          <button
+            type="button"
+            className={styles.helpButton}
+            aria-label={helpOpen ? 'Close help' : 'Open help'}
+            aria-pressed={helpOpen}
+            onClick={onToggleHelp}
+          >
+            <span className={styles.helpIcon} aria-hidden="true">
+              ?
+            </span>
+            <span className={styles.helpText}>Help</span>
+          </button>
+        </div>
       </div>
 
       <div className={styles.underline} aria-hidden="true" />

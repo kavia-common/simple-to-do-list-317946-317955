@@ -17,6 +17,31 @@
   gap: 1rem;
 }
 
+.headerActions {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.walkthrough {
+  height: 40px;
+  padding: 0 0.85rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text);
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+}
+
+.walkthrough:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-color: var(--primary);
+}
+
 .title {
   margin: 0;
   font-size: 1.05rem;

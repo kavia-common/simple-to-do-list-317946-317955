@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renders todo header and add task form", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText(/to-?do/i)).toBeInTheDocument();
+  expect(screen.getByLabelText(/title/i)).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /add task/i })).toBeInTheDocument();
 });

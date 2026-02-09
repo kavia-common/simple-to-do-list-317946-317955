@@ -1,0 +1,81 @@
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.inner {
+  width: min(920px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.25rem 0.25rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  color: var(--secondary);
+  font-size: 0.95rem;
+}
+
+.helpButton {
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+  transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.helpButton:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+  box-shadow: var(--shadow-sm);
+}
+
+.helpButton:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-color: var(--primary);
+}
+
+.helpIcon {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.helpText {
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.underline {
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent), transparent);
+  opacity: 0.9;
+}

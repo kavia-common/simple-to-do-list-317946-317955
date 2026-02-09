@@ -1,0 +1,71 @@
+.row {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.label {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.input {
+  height: 44px;
+  padding: 0 0.9rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-xs);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.input::placeholder {
+  color: color-mix(in srgb, var(--secondary) 70%, transparent);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--focus-ring);
+}
+
+.addButton {
+  height: 44px;
+  min-width: 92px;
+  padding: 0 1rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, var(--border));
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+.addButton:hover:enabled {
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.22);
+}
+
+.addButton:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring), 0 10px 24px rgba(59, 130, 246, 0.22);
+}
+
+.addButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  background: color-mix(in srgb, var(--secondary) 30%, var(--surface));
+  color: color-mix(in srgb, var(--secondary) 80%, transparent);
+  box-shadow: none;
+}
